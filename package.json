@@ -1,0 +1,28 @@
+{
+  "name": "electron-player",
+  "version": "1.0.0",
+  "description": "This is a music player made with Electron.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Edudjr/electron-player.git"
+  },
+  "keywords": [
+    "eletron-player",
+    "mp3",
+    "electron",
+    "player"
+  ],
+  "author": "Eduardo Domene Junior",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Edudjr/electron-player/issues"
+  },
+  "homepage": "https://github.com/Edudjr/electron-player#readme",
+  "dependencies": {
+    "electron": "^1.4.15"
+  }
+}
