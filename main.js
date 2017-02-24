@@ -1,6 +1,12 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
+const usbDetect = require('usb-detection');
+ 
+// Detect add/insert 
+usbDetect.on('add', function(device) { 
+  console.log('add', device); 
+});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
