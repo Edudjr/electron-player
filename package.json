@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Edudjr/electron-player#readme",
   "dependencies": {
-    "electron": "^1.4.15",
-    "usb-detection": "^1.4.0"
+    "drivelist": "^5.0.14",
+    "electron": "^1.4.15"
   }
 }

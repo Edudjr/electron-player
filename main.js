@@ -1,12 +1,28 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
-const usbDetect = require('usb-detection');
- 
-// Detect add/insert 
-usbDetect.on('add', function(device) { 
-  console.log('add', device); 
+const drivelist = require('drivelist');
+
+let devicesAttached = null;
+let currentDevice = null;
+
+getDevices(function(devices){
+  devicesAttached = devices;
 });
+
+setInterval(function(){
+  getDevices(function(devices){
+    for(var i=0; i<devices.length; i++){
+      if(devices[i].description == 'USB Flash Disk'){
+        currentDevice = devices[i];
+        console.log("OKOK");
+        return;
+      }
+    }
+    currentDevice = null;
+    console.log("NOTOK");
+  })
+}, 500);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -61,8 +77,18 @@ app.on('activate', () => {
   }
 })
 
+function getDevices(callback){
+  drivelist.list((error, drives) => {
+    if (error) {
+      throw error;
+    }
+    if(callback)
+      callback(drives);
+  });
+}
+
 module.exports = {
-	testFunction: function(){
-		console.log('this is a test');
+	testFunction: function(callback){
+	 getDevices(callback);
 	}
 }
