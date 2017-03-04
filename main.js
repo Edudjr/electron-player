@@ -1,41 +1,55 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
-const drivelist = require('drivelist');
+const fs = require('fs')
+const drivelist = require('drivelist')
 
-let UsbDevice = null;
+let usbDevice = null
+let usbSongList = []
 
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is garbage collected.
+let win
 
-watchForDevices();
+watchForDevices()
+
+function getSongListFromPath(dirPath){
+  console.log('Path: ',dirPath);
+  fs.readdir(dirPath, (err, files) => {
+    var fullPathFiles = files.map(function(filePath) {
+       return path.join(dirPath, filePath)
+    })
+    win.webContents.send('finishedLoadingSongList', fullPathFiles)
+  })
+}
 
 function watchForDevices(){
   setInterval(findDevices, 1000)
 }
 
-function findDevices(){
+function findDevices(callback){
   getDrives(function(drives){
     
     //Iterate through drives to find USB devices
     for(var i=0; i<drives.length; i++){
       if(drives[i].type == 'usb'){
-        if(!UsbDevice){
-          UsbDevice = drives[i]
+        if(!usbDevice){
+          usbDevice = drives[i]
           console.log('New device attached:\n',drives[i])
+          getSongListFromPath(usbDevice.mountpoints[0].path)
         }
+        if(callback) callback(true)
         return;
       }
     }
     //No devices were found
-    if(UsbDevice){
-      UsbDevice = null;
+    if(usbDevice){
+      usbDevice = null;
       console.log('No Devices found')
+      if(callback) callback(false)
     }
   })
 }
-
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let win
 
 function createWindow () {
   // Create the browser window.

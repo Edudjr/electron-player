@@ -2,6 +2,7 @@ const path = require('path');
 const remote = require('electron').remote;
 const Player = require('./player');
 const main = remote.require('./main');
+const ipcRenderer = require('electron').ipcRenderer;
 
 let player = new Player();
 
@@ -38,4 +39,10 @@ setup();
 function setup(){
 	player.add(path.join(__dirname, '/soundtrack-1.mp3'));
 	player.add(path.join(__dirname, '/soundtrack-2.mp3'));
+	ipcRenderer.on('finishedLoadingSongList', (event, songList) => {
+		songList.forEach(function(song){
+			player.add(song)
+		})
+		console.log(player.playlist)
+	});
 }
