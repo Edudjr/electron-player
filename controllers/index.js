@@ -6,29 +6,29 @@ const ipcRenderer = require('electron').ipcRenderer;
 
 let player = new Player();
 
-var playButton = document.querySelector('#play-button');
-var pauseButton = document.querySelector('#pause-button');
-var nextButton = document.querySelector('#next-button');
-var previousButton = document.querySelector('#previous-button');
-var homeButton = document.querySelector('#home-button');
+let playButton = document.querySelector('#play-button');
+let pauseButton = document.querySelector('#pause-button');
+let nextButton = document.querySelector('#next-button');
+let previousButton = document.querySelector('#previous-button');
+let homeButton = document.querySelector('#home-button');
 
-playButton.addEventListener('click', function () {
+playButton.addEventListener('click', () => {
   player.play();
 });
 
-pauseButton.addEventListener('click', function () {
+pauseButton.addEventListener('click', () => {
   player.pause();
 });
 
-nextButton.addEventListener('click', function(){
+nextButton.addEventListener('click', () => {
 	player.next();
 });
 
-previousButton.addEventListener('click', function(){
+previousButton.addEventListener('click', () => {
 	player.previous();
 });
 
-homeButton.addEventListener('click', function(){
+homeButton.addEventListener('click', () => {
 	main.testFunction(function(drives){
 		console.log(drives);
 	});
@@ -42,7 +42,7 @@ function setup(){
 		songList.forEach(function(song){
 			player.add(song)
 		})
-		console.log(player.playlist)
+		console.log('Player has finished loading')
 	})
 
 	ipcRenderer.on('deviceDisconnected', (event) => {
