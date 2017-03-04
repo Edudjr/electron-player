@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Edudjr/electron-player#readme",
   "dependencies": {
-    "drivelist": "^5.0.14",
+    "drivelist": "github:edudjr/drivelist",
     "electron": "^1.4.15"
   }
 }

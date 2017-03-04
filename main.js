@@ -3,26 +3,35 @@ const path = require('path')
 const url = require('url')
 const drivelist = require('drivelist');
 
-let devicesAttached = null;
-let currentDevice = null;
+let UsbDevice = null;
 
-getDevices(function(devices){
-  devicesAttached = devices;
-});
 
-setInterval(function(){
-  getDevices(function(devices){
-    for(var i=0; i<devices.length; i++){
-      if(devices[i].description == 'USB Flash Disk'){
-        currentDevice = devices[i];
-        console.log("OKOK");
+watchForDevices();
+
+function watchForDevices(){
+  setInterval(findDevices, 1000)
+}
+
+function findDevices(){
+  getDrives(function(drives){
+    
+    //Iterate through drives to find USB devices
+    for(var i=0; i<drives.length; i++){
+      if(drives[i].type == 'usb'){
+        if(!UsbDevice){
+          UsbDevice = drives[i]
+          console.log('New device attached:\n',drives[i])
+        }
         return;
       }
     }
-    currentDevice = null;
-    console.log("NOTOK");
+    //No devices were found
+    if(UsbDevice){
+      UsbDevice = null;
+      console.log('No Devices found')
+    }
   })
-}, 500);
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -77,7 +86,7 @@ app.on('activate', () => {
   }
 })
 
-function getDevices(callback){
+function getDrives(callback){
   drivelist.list((error, drives) => {
     if (error) {
       throw error;
@@ -89,6 +98,6 @@ function getDevices(callback){
 
 module.exports = {
 	testFunction: function(callback){
-	 getDevices(callback);
+	 getDrives(callback);
 	}
 }
