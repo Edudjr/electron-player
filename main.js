@@ -23,7 +23,7 @@ function findDevices(callback){
     //Iterate through drives to find USB devices
     for(var i=0; i<drives.length; i++){
       if(drives[i].type == 'usb'){
-        if(!usbDevice){
+        if(!usbDevice && drives[i].mountpoints.length){
           usbDevice = drives[i]
           console.log('New device attached:\n',drives[i])
           getSongListFromPath(usbDevice.mountpoints[0].path)
