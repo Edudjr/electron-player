@@ -1,6 +1,6 @@
 const path = require('path');
 const remote = require('electron').remote;
-const Player = require('./player');
+const Player = require('./../helpers/player');
 const main = remote.require('./main');
 const ipcRenderer = require('electron').ipcRenderer;
 

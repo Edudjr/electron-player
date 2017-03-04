@@ -3,7 +3,7 @@ const path = require('path')
 const url = require('url')
 const fs = require('fs')
 const drivelist = require('drivelist')
-const Event = require('./event')
+const Event = require('./helpers/event')
 
 let event = null
 let usbDevice = null
@@ -65,7 +65,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, './views/index.html'),
     protocol: 'file:',
     slashes: true
   }))
