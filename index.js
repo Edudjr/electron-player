@@ -37,12 +37,15 @@ homeButton.addEventListener('click', function(){
 setup();
 
 function setup(){
-	player.add(path.join(__dirname, '/soundtrack-1.mp3'));
-	player.add(path.join(__dirname, '/soundtrack-2.mp3'));
+	
 	ipcRenderer.on('finishedLoadingSongList', (event, songList) => {
 		songList.forEach(function(song){
 			player.add(song)
 		})
 		console.log(player.playlist)
-	});
+	})
+
+	ipcRenderer.on('deviceDisconnected', (event) => {
+		console.log('Device has disconnected')
+	})
 }

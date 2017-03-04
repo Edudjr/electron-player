@@ -3,25 +3,15 @@ const path = require('path')
 const url = require('url')
 const fs = require('fs')
 const drivelist = require('drivelist')
+const Event = require('./event')
 
+let event = null
 let usbDevice = null
 let usbSongList = []
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
-
-watchForDevices()
-
-function getSongListFromPath(dirPath){
-  console.log('Path: ',dirPath);
-  fs.readdir(dirPath, (err, files) => {
-    var fullPathFiles = files.map(function(filePath) {
-       return path.join(dirPath, filePath)
-    })
-    win.webContents.send('finishedLoadingSongList', fullPathFiles)
-  })
-}
 
 function watchForDevices(){
   setInterval(findDevices, 1000)
@@ -45,9 +35,20 @@ function findDevices(callback){
     //No devices were found
     if(usbDevice){
       usbDevice = null;
-      console.log('No Devices found')
+      console.log('No Devices found/Device has disconnected')
+      event.deviceDisconnected()
       if(callback) callback(false)
     }
+  })
+}
+
+function getSongListFromPath(dirPath){
+	console.log('Path: ',dirPath);
+  fs.readdir(dirPath, (err, files) => {
+    var fullPathFiles = files.map(function(filePath) {
+       return path.join(dirPath, filePath)
+    })
+    event.finishedLoadingSongList(fullPathFiles)
   })
 }
 
@@ -58,6 +59,9 @@ function createWindow () {
   	height: 600,
   	resizable: false
   })
+
+  //Create new Event based on BrowserWindow
+  event = new Event(win)
 
   // and load the index.html of the app.
   win.loadURL(url.format({
@@ -76,6 +80,9 @@ function createWindow () {
     // when you should delete the corresponding element.
     win = null
   })
+
+  //Start watching for devices
+  watchForDevices()
 }
 
 // This method will be called when Electron has finished
