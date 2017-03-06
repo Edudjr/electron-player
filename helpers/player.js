@@ -1,19 +1,10 @@
 /* Note: You need to pass the full path for the song
  * e.g: player.add = 'c/user/username/musics/shake.mp3'
- *
  */
 var Player = function(){
 	this.playlist = [];
 	this.currentAudio = new Audio();
 	this.currentSongIndex = 0;
-	
-	//Events
-	this.currentAudio.onended = function(){
-		console.log('Event: Song has ended');
-	}
-	this.currentAudio.onplay = function(){
-		console.log('Event: Song has started');
-	}
 
 	//Public functions
 	this.play = function(index = null){
@@ -79,6 +70,16 @@ var Player = function(){
 			? this.currentSongIndex -= 1
 			: this.currentSongIndex = this.playlist.length-1;
 		changeToIndexAndPlay(this, this.currentSongIndex);
+	}
+
+	//Events
+	this.currentAudio.onended = () => {
+		console.log('Event: Song has ended');
+		this.next()
+	}
+
+	this.currentAudio.onplay = () => {
+		console.log('Event: Song has started');
 	}
 }
 
