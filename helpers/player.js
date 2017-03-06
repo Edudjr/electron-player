@@ -5,6 +5,12 @@ var Player = function(){
 	this.playlist = [];
 	this.currentAudio = new Audio();
 	this.currentSongIndex = 0;
+	this.STATE = {
+		PLAYING: 0,
+		PAUSED: 1,
+		STOPPED: 2
+	}
+	this.currentState = this.STATE.STOPPED;
 
 	//Public functions
 	this.play = function(index = null){
@@ -13,13 +19,19 @@ var Player = function(){
 			if(this.playlist.length && index > 0 && index < this.playlist.length){
 				console.log('Playing from index: '+index);
 				this.currentAudio.src = this.playlist[index];
+				this.currentState = this.STATE.PLAYING;
 			}else{
 				console.log('Index out of range');
 			}
 		}
 		else if (this.playlist.length){
 			console.log('Playing song');
-			changeToIndexAndPlay(this, this.currentSongIndex);
+			if(this.currentState === this.STATE.PAUSED){
+				this.currentAudio.play();
+			}else{
+				changeToIndexAndPlay(this, this.currentSongIndex);
+			}
+			this.currentState = this.STATE.PLAYING;
 		}
 		else{
 			console.log('No songs to play');
@@ -33,6 +45,7 @@ var Player = function(){
 		}else{
 			console.log('No song to pause');
 		}
+		this.currentState = this.STATE.PAUSED;
 	}
 
 	this.stop = function(){
@@ -41,6 +54,7 @@ var Player = function(){
 			this.currentAudio.pause();
 			this.currentSongIndex
 		}
+		this.currentState = this.STATE.STOPPED;
 	}
 
 	this.add = function(songPath){
@@ -88,6 +102,7 @@ function changeToIndexAndPlay(ctx, index){
 	ctx.currentAudio.src = ctx.playlist[index];
 	ctx.currentAudio.load();
 	ctx.currentAudio.play();
+	ctx.currentState = ctx.STATE.PLAYING;
 }
 
 module.exports = Player;
