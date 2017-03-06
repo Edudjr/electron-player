@@ -11,6 +11,7 @@ let pauseButton = document.querySelector('#pause-button');
 let nextButton = document.querySelector('#next-button');
 let previousButton = document.querySelector('#previous-button');
 let homeButton = document.querySelector('#home-button');
+let stopButton = document.querySelector('#stop-button');
 
 playButton.addEventListener('click', () => {
   player.play();
@@ -26,6 +27,10 @@ nextButton.addEventListener('click', () => {
 
 previousButton.addEventListener('click', () => {
 	player.previous();
+});
+
+stopButton.addEventListener('click', () => {
+	player.stop();
 });
 
 homeButton.addEventListener('click', () => {
