@@ -2,14 +2,87 @@
 <html>
 	<head>
 		<title>Electron Player</title>
+		<script
+		  src="https://code.jquery.com/jquery-2.2.4.min.js"
+		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+		  crossorigin="anonymous"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<style>
+			#main-container{
+				background-color: gray;
+				height: 600px;
+				width: 1024px;
+				display: block;
+			}
+
+			#upper-main-row{
+				background-color: yellow;
+				height: 75%;
+			}
+
+			#bottom-main-row{
+				background-color: red;
+				height: 25%
+			}
+
+			#bottom-main-row .upper-row{
+				height: 95%;
+			}
+
+			#bottom-main-row .bottom-row{
+				height: 5%;
+				background-color: aqua;
+			}
+
+			.fill-parent-height{
+				height: 100%;
+			}
+
+			.small-horizontal-grids{
+				background-color: gray;
+			}
+
+			#bottom-main-row header{
+
+			}
+		</style>
 	</head>
 	<body>
-		<button id="play-button" type="button">Play</button>
-		<button id="pause-button" type="button">Pause</button>
-		<button id="stop-button" type="button">Stop</button>
-		<button id="next-button" type="button">Next</button>
-		<button id="previous-button" type="button">Previous</button>
-		<button id="home-button" type="button">Home</button>
+		<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+		<div id="main-container" class="container">
+			<div id="upper-main-row" class="row">
+				<div class="col-md-2 fill-parent-height">teste1</div>
+				<div class="col-md-8 fill-parent-height">teste2</div>
+				<div class="col-md-2 fill-parent-height">teste3</div>
+			</div>
+			<div id="bottom-main-row" class="row">
+				<div class="col-md-12 fill-parent-height">
+					<div class="row upper-row">
+						<div class="col-md-2 fill-parent-height">teste1</div>
+						<div class="col-md-8 fill-parent-height">
+							<div class="col-md-4 fill-parent-height">
+								<div class="col-md-6 fill-parent-height">teste1</div>
+								<div class="col-md-6 fill-parent-height">teste1</div>
+							</div>
+							<div class="col-md-4 fill-parent-height">teste1</div>
+							<div class="col-md-4 fill-parent-height">
+								<div class="col-md-6 fill-parent-height">teste1</div>
+								<div class="col-md-6 fill-parent-height">teste1</div>
+							</div>
+						</div>
+						<div class="col-md-2 fill-parent-height">teste3</div>
+					</div>
+					<div class="row bottom-row">
+						<div class="col-md-12 fill-parent-height"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<script>require('../controllers/index.js')</script>
 	</body>
 </html>
