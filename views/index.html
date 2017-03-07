@@ -38,6 +38,9 @@
 				background-color: aqua;
 			}
 
+			#player-container{
+				display: flex;
+			}
 			.fill-parent-height{
 				height: 100%;
 			}
@@ -46,9 +49,30 @@
 				background-color: gray;
 			}
 
-			#bottom-main-row header{
-
+			#next-button img {
+			    position: absolute;  
+			    top: 0;  
+			    bottom: 0;  
+			    left: 0;  
+			    right: 0;  
+			    margin: auto;
 			}
+
+			.play-button-element{
+				width: 25%;
+				text-align: center;
+			}
+
+			.side-nav-element{
+				width: inherit;
+			}
+
+			.img_thumb{
+				display:flex;
+				align-items:center;
+				justify-content:center;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -62,19 +86,33 @@
 			<div id="bottom-main-row" class="row">
 				<div class="col-md-12 fill-parent-height">
 					<div class="row upper-row">
-						<div class="col-md-2 fill-parent-height">teste1</div>
-						<div class="col-md-8 fill-parent-height">
-							<div class="col-md-4 fill-parent-height">
-								<div class="col-md-6 fill-parent-height">teste1</div>
-								<div class="col-md-6 fill-parent-height">teste1</div>
+						<div class="col-md-3 fill-parent-height">teste1</div>
+						<div id="player-container" class="col-md-6 fill-parent-height">
+							<div class="side-nav-element fill-parent-height">
+								teste
 							</div>
-							<div class="col-md-4 fill-parent-height">teste1</div>
-							<div class="col-md-4 fill-parent-height">
-								<div class="col-md-6 fill-parent-height">teste1</div>
-								<div class="col-md-6 fill-parent-height">teste1</div>
+							<div class="side-nav-element fill-parent-height">
+								teste
+							</div>
+							<div class="side-nav-element fill-parent-height">
+								teste
+							</div>
+							<div class="img_thumb play-button-element fill-parent">
+							    <a class="images_class" href="http://i.imgur.com/2FMLuSn.jpg" rel="images">
+							       <img src="../media/play.png"/>
+							    </a>
+							</div>
+							<div class="side-nav-element fill-parent-height">
+								teste
+							</div>
+							<div class="side-nav-element fill-parent-height">
+								test
+							</div>
+							<div class="side-nav-element fill-parent-height">
+								teste
 							</div>
 						</div>
-						<div class="col-md-2 fill-parent-height">teste3</div>
+						<div class="col-md-3 fill-parent-height">teste3</div>
 					</div>
 					<div class="row bottom-row">
 						<div class="col-md-12 fill-parent-height"></div>
