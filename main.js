@@ -57,7 +57,8 @@ function createWindow () {
   win = new BrowserWindow({
   	width: 1024, 
   	height: 600,
-  	resizable: false
+  	resizable: false,
+    frame: false
   })
 
   //Create new Event based on BrowserWindow
@@ -71,7 +72,7 @@ function createWindow () {
   }))
   win.setMenu(null)
   // Open the DevTools.
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
