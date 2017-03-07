@@ -13,19 +13,17 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<style>
 			#main-container{
-				background-color: gray;
+				background-color: #76798f;
 				height: 600px;
 				width: 1024px;
 				display: block;
 			}
 
 			#upper-main-row{
-				background-color: yellow;
 				height: 75%;
 			}
 
 			#bottom-main-row{
-				background-color: red;
 				height: 25%
 			}
 
@@ -73,15 +71,28 @@
 				justify-content:center;
 			}
 
+			.separator{
+				background-color: black;
+				height: 2px;
+				opacity: 0.05;
+			}
+
 		</style>
 	</head>
 	<body>
 		<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
 		<div id="main-container" class="container">
 			<div id="upper-main-row" class="row">
-				<div class="col-md-2 fill-parent-height">teste1</div>
-				<div class="col-md-8 fill-parent-height">teste2</div>
-				<div class="col-md-2 fill-parent-height">teste3</div>
+				<div class="col-md-12 fill-parent-height">
+					<div class="row fill-parent-height">
+						<div class="col-md-2 fill-parent-height">teste1</div>
+						<div class="col-md-8 fill-parent-height">teste2</div>
+						<div class="col-md-2 fill-parent-height">teste3</div>
+					</div>
+					<div class="row separator">
+						<div class="col-md-12"></div>
+					</div>
+				</div>
 			</div>
 			<div id="bottom-main-row" class="row">
 				<div class="col-md-12 fill-parent-height">
@@ -94,16 +105,20 @@
 							<div class="side-nav-element fill-parent-height">
 								teste
 							</div>
-							<div class="side-nav-element fill-parent-height">
-								teste
+							<div class="img_thumb side-nav-element fill-parent">
+							    <a href="http://i.imgur.com/2FMLuSn.jpg" rel="images">
+							       <img src="../media/prev.png"/>
+							    </a>
 							</div>
 							<div class="img_thumb play-button-element fill-parent">
-							    <a class="images_class" href="http://i.imgur.com/2FMLuSn.jpg" rel="images">
+							    <a href="http://i.imgur.com/2FMLuSn.jpg" rel="images">
 							       <img src="../media/play.png"/>
 							    </a>
 							</div>
-							<div class="side-nav-element fill-parent-height">
-								teste
+							<div class="img_thumb side-nav-element fill-parent">
+							    <a href="http://i.imgur.com/2FMLuSn.jpg" rel="images">
+							       <img src="../media/next.png"/>
+							    </a>
 							</div>
 							<div class="side-nav-element fill-parent-height">
 								test
