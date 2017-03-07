@@ -17,10 +17,6 @@ playButton.addEventListener('click', () => {
   player.play();
 });
 
-pauseButton.addEventListener('click', () => {
-  player.pause();
-});
-
 nextButton.addEventListener('click', () => {
 	player.next();
 });
@@ -29,15 +25,6 @@ previousButton.addEventListener('click', () => {
 	player.previous();
 });
 
-stopButton.addEventListener('click', () => {
-	player.stop();
-});
-
-homeButton.addEventListener('click', () => {
-	main.testFunction(function(drives){
-		console.log(drives);
-	});
-});
 
 setup();
 
