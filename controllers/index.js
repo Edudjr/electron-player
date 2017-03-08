@@ -27,13 +27,14 @@ previousButton.addEventListener('click', () => {
 	player.previous();
 });
 
-volumeBarForeground.style.height = '0%';
+volumeBarForeground.style.height = '100%';
 
 volumeBar.addEventListener('mousemove', (event) => {
 	let rect = volumeBar.getBoundingClientRect();
 	let position = event.pageY - rect.top;
 	let percentage = 100 - (position*100/rect.height);
 	volumeBarForeground.style.height = percentage+'%';
+	player.setVolume(percentage);
 });
 
 
