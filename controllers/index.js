@@ -12,6 +12,8 @@ let nextButton = document.querySelector('#next-button');
 let previousButton = document.querySelector('#previous-button');
 let homeButton = document.querySelector('#home-button');
 let stopButton = document.querySelector('#stop-button');
+let volumeBar = document.querySelector('#volume-bar-selector');
+let volumeBarForeground = document.querySelector('#volume-bar-foreground');
 
 playButton.addEventListener('click', () => {
   player.play();
@@ -23,6 +25,15 @@ nextButton.addEventListener('click', () => {
 
 previousButton.addEventListener('click', () => {
 	player.previous();
+});
+
+volumeBarForeground.style.height = '0%';
+
+volumeBar.addEventListener('mousemove', (event) => {
+	let rect = volumeBar.getBoundingClientRect();
+	let position = event.pageY - rect.top;
+	let percentage = 100 - (position*100/rect.height);
+	volumeBarForeground.style.height = percentage+'%';
 });
 
 

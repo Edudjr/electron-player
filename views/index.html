@@ -2,15 +2,11 @@
 <html>
 	<head>
 		<title>Electron Player</title>
-		<script
-		  src="https://code.jquery.com/jquery-2.2.4.min.js"
-		  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-		  crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<style>
 			#main-container{
 				background-color: #76798f;
@@ -68,6 +64,37 @@
 				opacity: 0.05;
 			}
 
+			.absolute-center {
+				margin: auto;
+				position: absolute;
+				top: 0; left: 0; bottom: 0; right: 0;
+			}
+			.volume-bar-size{
+				width: 12%;
+				height: 80%;
+			}
+			#volume-bar-selector{
+				width: 12%;
+				height: 80%;
+			}
+			#volume-bar-background{
+				background-color: #686a80;
+				height: 100%;
+			}
+
+			#volume-bar-foreground{
+				background-color: #f2f2f2;
+				height: 70%;
+				position: absolute;
+				left: 0; 
+				bottom: 0; 
+				right: 0;
+			}
+
+			.rounded-bar{
+				border-radius: 20px;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -76,9 +103,15 @@
 			<div id="upper-main-row" class="row">
 				<div class="col-sm-12 fill-parent-height">
 					<div class="row fill-parent-height">
-						<div class="col-sm-2 fill-parent-height">teste1</div>
-						<div class="col-sm-8 fill-parent-height">teste2</div>
-						<div class="col-sm-2 fill-parent-height">teste3</div>
+						<div class="col-sm-2 fill-parent-height"></div>
+						<div class="col-sm-8 fill-parent-height"></div>
+						<div class="col-sm-2 fill-parent-height">
+							<div id="volume-bar" class="absolute-center volume-bar-size">
+								<div id="volume-bar-background" class="absolute-center rounded-bar"></div>
+								<div id="volume-bar-foreground" class="rounded-bar"></div>
+							</div>
+							<div id="volume-bar-selector" class="absolute-center volume-bar-size"></div>
+						</div>
 					</div>
 					<div class="row separator">
 						<div class="col-sm-12"></div>
@@ -88,13 +121,13 @@
 			<div id="bottom-main-row" class="row">
 				<div class="col-sm-12 fill-parent-height">
 					<div class="row upper-row">
-						<div class="col-sm-3 fill-parent-height">teste1</div>
+						<div class="col-sm-3 fill-parent-height"></div>
 						<div id="player-container" class="col-sm-6 fill-parent-height">
 							<div class="side-nav-element fill-parent-height">
-								teste
+								
 							</div>
 							<div class="side-nav-element fill-parent-height">
-								teste
+								
 							</div>
 							<div class="img_thumb side-nav-element fill-parent">
 							    <a id="previous-button" href="#" rel="images">
@@ -112,13 +145,13 @@
 							    </a>
 							</div>
 							<div class="side-nav-element fill-parent-height">
-								test
+								
 							</div>
 							<div class="side-nav-element fill-parent-height">
-								teste
+								
 							</div>
 						</div>
-						<div class="col-sm-3 fill-parent-height">teste3</div>
+						<div class="col-sm-3 fill-parent-height"></div>
 					</div>
 					<div class="row bottom-row">
 						<div class="col-sm-12 fill-parent-height"></div>

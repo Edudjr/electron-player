@@ -55,10 +55,9 @@ function getSongListFromPath(dirPath){
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-  	width: 1024, 
-  	height: 600,
-  	resizable: false,
-    frame: false
+  	width: 1424, 
+  	height: 800,
+  	resizable: false
   })
 
   //Create new Event based on BrowserWindow
@@ -72,7 +71,7 @@ function createWindow () {
   }))
   win.setMenu(null)
   // Open the DevTools.
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
