@@ -45,8 +45,11 @@ function findDevices(callback){
 function getSongListFromPath(dirPath){
 	console.log('Path: ',dirPath);
   fs.readdir(dirPath, (err, files) => {
-    var fullPathFiles = files.map(function(filePath) {
-       return path.join(dirPath, filePath)
+    var fullPathFiles = files.filter(function(filePath){
+      if(/.mp3$/.test(filePath)) return true
+      return false
+    }).map(function(filePath) {
+      return path.join(dirPath, filePath)
     })
     event.finishedLoadingSongList(fullPathFiles)
   })
