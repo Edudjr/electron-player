@@ -86,6 +86,11 @@ var Player = function(){
 		changeToIndexAndPlay(this, this.currentSongIndex);
 	}
 
+	this.setVolume = function(volumePercentage){
+		console.log('Volume set to: '+volumePercentage);
+		this.currentAudio.volume = volumePercentage / 100;
+	}
+
 	//Events
 	this.currentAudio.onended = () => {
 		console.log('Event: Song has ended');
