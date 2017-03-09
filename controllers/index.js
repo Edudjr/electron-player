@@ -54,4 +54,12 @@ function setup(){
 	ipcRenderer.on('deviceDisconnected', (event) => {
 		console.log('Device has disconnected')
 	})
+
+	player.onended = function(){
+		console.log('FRONT: Song has ended');
+	}
+
+	player.onplay = function(song){
+		console.log(song);
+	}
 }
