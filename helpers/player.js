@@ -12,6 +12,10 @@ var Player = function(){
 	}
 	this.currentState = this.STATE.STOPPED;
 
+	//events
+	this.onplay = null;
+	this.onended = null;
+
 	//Public functions
 	this.play = function(index = null){
 		//Checks if there is a playslist and index is valid
@@ -95,10 +99,12 @@ var Player = function(){
 	this.currentAudio.onended = () => {
 		console.log('Event: Song has ended');
 		this.next()
+		if(this.onended) this.onended()
 	}
 
 	this.currentAudio.onplay = () => {
 		console.log('Event: Song has started');
+		if(this.onplay) this.onplay()
 	}
 }
 
