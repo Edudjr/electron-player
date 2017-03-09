@@ -95,6 +95,29 @@
 				border-radius: 20px;
 			}
 
+			#information{
+				width: 100%;
+				height: 100%;
+			}
+
+			#song{
+				font-size: -webkit-xxx-large;
+				height: 60%;
+				display: flex;
+				justify-content: center;
+				align-items: flex-end;
+				color: #f2f2f2;
+			}
+
+			#author{
+				font-size: xx-large;
+				font-variant: small-caps;
+			}
+
+			.centered-text{
+				text-align: center;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -104,7 +127,12 @@
 				<div class="col-sm-12 fill-parent-height">
 					<div class="row fill-parent-height">
 						<div class="col-sm-2 fill-parent-height"></div>
-						<div class="col-sm-8 fill-parent-height"></div>
+						<div class="col-sm-8 fill-parent-height">
+							<div id="information" class="absolute-center">
+								<div id="song" class="centered-text">The great gig in the sky</div>
+								<div id="author" class="centered-text">Pink Floyd</div>
+							</div>
+						</div>
 						<div class="col-sm-2 fill-parent-height">
 							<div id="volume-bar" class="absolute-center volume-bar-size">
 								<div id="volume-bar-background" class="absolute-center rounded-bar"></div>
