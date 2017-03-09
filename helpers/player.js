@@ -114,7 +114,7 @@ var Player = function(){
 
 	this.currentAudio.onplay = () => {
 		console.log('Event: Song has started');
-		if(this.onplay) this.onplay()
+		if(this.onplay) this.onplay(this.playlist[this.currentSongIndex])
 	}
 }
 

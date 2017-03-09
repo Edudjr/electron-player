@@ -60,7 +60,7 @@ function setup(){
 		console.log('FRONT: Song has ended');
 	}
 
-	player.onplay = function(){
-		console.log('FRONT: Song has started');
+	player.onplay = function(song){
+		console.log(song);
 	}
 }
