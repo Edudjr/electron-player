@@ -14,6 +14,8 @@ let homeButton = document.querySelector('#home-button');
 let stopButton = document.querySelector('#stop-button');
 let volumeBar = document.querySelector('#volume-bar-selector');
 let volumeBarForeground = document.querySelector('#volume-bar-foreground');
+let song = document.querySelector('#song');
+let author = document.querySelector('#author');
 
 playButton.addEventListener('click', () => {
   player.play();
@@ -55,11 +57,12 @@ function setup(){
 		console.log('Device has disconnected')
 	})
 
-	player.onended = function(){
+	player.onended = () => {
 		console.log('FRONT: Song has ended');
 	}
 
-	player.onplay = function(song){
-		console.log(song);
+	player.onplay = (song) => {
+		this.song.innerHTML = song.songName;
+		this.author.innerHTML = song.songAuthor;
 	}
 }
