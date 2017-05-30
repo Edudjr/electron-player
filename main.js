@@ -1,53 +1,75 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
-const drivelist = require('drivelist');
+const fs = require('fs')
+const drivelist = require('drivelist')
+const Event = require('./helpers/event')
 
-let UsbDevice = null;
-
-
-watchForDevices();
-
-function watchForDevices(){
-  setInterval(findDevices, 1000)
-}
-
-function findDevices(){
-  getDrives(function(drives){
-    
-    //Iterate through drives to find USB devices
-    for(var i=0; i<drives.length; i++){
-      if(drives[i].type == 'usb'){
-        if(!UsbDevice){
-          UsbDevice = drives[i]
-          console.log('New device attached:\n',drives[i])
-        }
-        return;
-      }
-    }
-    //No devices were found
-    if(UsbDevice){
-      UsbDevice = null;
-      console.log('No Devices found')
-    }
-  })
-}
+let event = null
+let usbDevice = null
+let usbSongList = []
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
+function watchForDevices(){
+  setInterval(findDevices, 1000)
+}
+
+function findDevices(callback){
+  getDrives(function(drives){
+
+    //Iterate through drives to find USB devices
+    for(var i=0; i<drives.length; i++){
+      if(drives[i].type.toLowerCase() == 'usb'){
+        if(!usbDevice && drives[i].mountpoints.length){
+          usbDevice = drives[i]
+          console.log('New device attached:\n',drives[i])
+          getSongListFromPath(usbDevice.mountpoints[0].path)
+        }
+        if(callback) callback(true)
+        return;
+      }
+    }
+    //No devices were found
+    if(usbDevice){
+      usbDevice = null;
+      console.log('No Devices found/Device has disconnected')
+      event.deviceDisconnected()
+      if(callback) callback(false)
+    }
+  })
+}
+
+function getSongListFromPath(dirPath){
+	console.log('Path: ',dirPath);
+  fs.readdir(dirPath, (err, files) => {
+    var fullPathFiles = files.filter(function(filePath){
+      if(/.mp3$/.test(filePath)) return true
+      return false
+    }).map(function(filePath) {
+      return path.join(dirPath, filePath)
+    })
+    event.finishedLoadingSongList(fullPathFiles)
+  })
+}
+
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-  	width: 800, 
+  	width: 1024,
   	height: 600,
-  	resizable: false
+  	resizable: false,
+    frame: false
   })
+
+  //Create new Event based on BrowserWindow
+  event = new Event(win)
 
   // and load the index.html of the app.
   win.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, './views/index.html'),
     protocol: 'file:',
     slashes: true
   }))
@@ -62,6 +84,9 @@ function createWindow () {
     // when you should delete the corresponding element.
     win = null
   })
+
+  //Start watching for devices
+  watchForDevices()
 }
 
 // This method will be called when Electron has finished
