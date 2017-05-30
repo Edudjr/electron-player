@@ -43,8 +43,8 @@ volumeBar.addEventListener('mousemove', (event) => {
 setup();
 
 function setup(){
-	player.add(path.join(__dirname, './../media/soundtrack-1.mp3'));
-	player.add(path.join(__dirname, './../media/soundtrack-2.mp3'));
+	//player.add(path.join(__dirname, './../media/soundtrack-1.mp3'));
+	//player.add(path.join(__dirname, './../media/soundtrack-2.mp3'));
 
 	ipcRenderer.on('finishedLoadingSongList', (event, songList) => {
 		songList.forEach(function(song){

@@ -7,118 +7,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<style>
-			#main-container{
-				background-color: #76798f;
-				height: 600px;
-				width: 1024px;
-				display: block;
-			}
-
-			#upper-main-row{
-				height: 75%;
-			}
-
-			#bottom-main-row{
-				height: 25%
-			}
-
-			#bottom-main-row .upper-row{
-				height: 95%;
-			}
-
-			#bottom-main-row .bottom-row{
-				height: 5%;
-				background-color: aqua;
-			}
-
-			#player-container{
-				display: flex;
-			}
-			.fill-parent-height{
-				height: 100%;
-			}
-
-			.small-horizontal-grids{
-				background-color: gray;
-			}
-
-			.play-button-element{
-				width: 25%;
-				text-align: center;
-			}
-
-			.side-nav-element{
-				width: inherit;
-			}
-
-			.img_thumb{
-				display:flex;
-				align-items:center;
-				justify-content:center;
-			}
-
-			.separator{
-				background-color: black;
-				height: 2px;
-				opacity: 0.05;
-			}
-
-			.absolute-center {
-				margin: auto;
-				position: absolute;
-				top: 0; left: 0; bottom: 0; right: 0;
-			}
-			.volume-bar-size{
-				width: 12%;
-				height: 80%;
-			}
-			#volume-bar-selector{
-				width: 12%;
-				height: 80%;
-			}
-			#volume-bar-background{
-				background-color: #686a80;
-				height: 100%;
-			}
-
-			#volume-bar-foreground{
-				background-color: #f2f2f2;
-				height: 70%;
-				position: absolute;
-				left: 0; 
-				bottom: 0; 
-				right: 0;
-			}
-
-			.rounded-bar{
-				border-radius: 20px;
-			}
-
-			#information{
-				width: 100%;
-				height: 100%;
-			}
-
-			#song{
-				font-size: -webkit-xxx-large;
-				height: 60%;
-				display: flex;
-				justify-content: center;
-				align-items: flex-end;
-				color: #f2f2f2;
-			}
-
-			#author{
-				font-size: xx-large;
-				font-variant: small-caps;
-			}
-
-			.centered-text{
-				text-align: center;
-			}
-
-		</style>
+		<link rel="stylesheet" href="../css/style.css">
 	</head>
 	<body>
 		<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
@@ -152,10 +41,10 @@
 						<div class="col-sm-3 fill-parent-height"></div>
 						<div id="player-container" class="col-sm-6 fill-parent-height">
 							<div class="side-nav-element fill-parent-height">
-								
+
 							</div>
 							<div class="side-nav-element fill-parent-height">
-								
+
 							</div>
 							<div class="img_thumb side-nav-element fill-parent">
 							    <a id="previous-button" href="#" rel="images">
@@ -173,10 +62,10 @@
 							    </a>
 							</div>
 							<div class="side-nav-element fill-parent-height">
-								
+
 							</div>
 							<div class="side-nav-element fill-parent-height">
-								
+
 							</div>
 						</div>
 						<div class="col-sm-3 fill-parent-height"></div>
@@ -187,7 +76,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<script>require('../controllers/index.js')</script>
 	</body>
 </html>

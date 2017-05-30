@@ -19,7 +19,7 @@ function watchForDevices(){
 
 function findDevices(callback){
   getDrives(function(drives){
-    
+
     //Iterate through drives to find USB devices
     for(var i=0; i<drives.length; i++){
       if(drives[i].type.toLowerCase() == 'usb'){
@@ -58,9 +58,10 @@ function getSongListFromPath(dirPath){
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-  	width: 1424, 
-  	height: 800,
-  	resizable: false
+  	width: 1024,
+  	height: 600,
+  	resizable: false,
+    frame: false
   })
 
   //Create new Event based on BrowserWindow
