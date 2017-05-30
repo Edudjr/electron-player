@@ -2,12 +2,15 @@
  * e.g: player.add = 'c/user/username/musics/shake.mp3'
  */
 var Song = function(songPath){
-	//get everything after '\'
+	//get everything after '\' or '/'
 	let fullName = songPath.substr(songPath.lastIndexOf('\\') + 1);
+	fullName = songPath.substr(songPath.lastIndexOf('/') + 1);
 	let songNameMp3 = fullName.substr(fullName.lastIndexOf('-')+1).trim();
 	this.songName = songNameMp3.substr(0, songNameMp3.lastIndexOf('.'));
 	this.songAuthor = fullName.substr(0, fullName.lastIndexOf('-'));
 	this.songPath = songPath;
+	console.log(this.songName);
+	console.log(this.songAuthor);
 }
 
 var Player = function(){
@@ -86,8 +89,8 @@ var Player = function(){
 
 	this.next = function(){
 		console.log('Moving to the next song');
-		this.currentSongIndex < this.playlist.length-1 
-			? this.currentSongIndex += 1 
+		this.currentSongIndex < this.playlist.length-1
+			? this.currentSongIndex += 1
 			: this.currentSongIndex = 0;
 		changeToIndexAndPlay(this, this.currentSongIndex);
 	}

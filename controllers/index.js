@@ -16,6 +16,7 @@ let volumeBar = document.querySelector('#volume-bar-selector');
 let volumeBarForeground = document.querySelector('#volume-bar-foreground');
 let song = document.querySelector('#song');
 let author = document.querySelector('#author');
+let close = document.querySelector('#close');
 
 playButton.addEventListener('click', () => {
   player.play();
@@ -27,6 +28,11 @@ nextButton.addEventListener('click', () => {
 
 previousButton.addEventListener('click', () => {
 	player.previous();
+});
+
+close.addEventListener('click', () => {
+  var window = remote.getCurrentWindow();
+  window.close();
 });
 
 volumeBarForeground.style.height = '100%';
@@ -43,8 +49,8 @@ volumeBar.addEventListener('mousemove', (event) => {
 setup();
 
 function setup(){
-	//player.add(path.join(__dirname, './../media/soundtrack-1.mp3'));
-	//player.add(path.join(__dirname, './../media/soundtrack-2.mp3'));
+	player.add(path.join(__dirname, './../media/soundtrack-1.mp3'));
+	player.add(path.join(__dirname, './../media/soundtrack-2.mp3'));
 
 	ipcRenderer.on('finishedLoadingSongList', (event, songList) => {
 		songList.forEach(function(song){
