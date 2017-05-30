@@ -24,6 +24,8 @@
   "homepage": "https://github.com/Edudjr/electron-player#readme",
   "dependencies": {
     "drivelist": "github:edudjr/drivelist",
-    "electron": "^1.4.15"
+    "electron": "^1.4.15",
+    "jquery": "^3.2.1",
+    "jsdom": "^11.0.0"
   }
 }

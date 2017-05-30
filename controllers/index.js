@@ -3,6 +3,9 @@ const remote = require('electron').remote;
 const Player = require('./../helpers/player');
 const main = remote.require('./main');
 const ipcRenderer = require('electron').ipcRenderer;
+const $ = require('jquery');
+const currentWindow = remote.getCurrentWindow();
+currentWindow.$ = $;
 
 let player = new Player();
 
@@ -19,6 +22,10 @@ let author = document.querySelector('#author');
 let close = document.querySelector('#close');
 
 playButton.addEventListener('click', () => {
+  $("#information").fadeTo(0,0);
+  $("#play-button").fadeTo(100,0.5, function(){
+    $("#play-button").fadeTo(100,1);
+  });
   player.play();
 });
 
@@ -64,11 +71,15 @@ function setup(){
 	})
 
 	player.onended = () => {
-		console.log('FRONT: Song has ended');
+    $("#information").fadeTo(0,0);
 	}
 
 	player.onplay = (song) => {
 		this.song.innerHTML = song.songName;
 		this.author.innerHTML = song.songAuthor;
+    $("#information").fadeTo(400,1);
+    // $("#information").fadeOut("fast", function(){
+    //   $( "#information" ).fadeIn("slow");
+    // });
 	}
 }
